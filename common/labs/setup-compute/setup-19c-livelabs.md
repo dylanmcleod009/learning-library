@@ -1,4 +1,4 @@
-# Setup - LiveLabs
+# Environment Setup 
 
 ## Introduction
 This lab will show you how to setup a Oracle Cloud network (VCN) and a compute instance running a pre-configured Oracle Database 19c install using Oracle Resource Manager and Terraform.  

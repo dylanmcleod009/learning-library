@@ -48,26 +48,21 @@
             "publisheddate": "4/05/2020",
             "filename": "../partitioning/partitioning.md"
         },
+		
 		{
-            "title": "Lab 6: Application Continuity - Coming soon",
-            "description": "Application Continuity",
-            "publisheddate": "4/05/2020",
-            "filename": "../appcont/appcont.md"
-        },
-		{
-            "title": "Lab 7: JSON in the Oracle DB",
+            "title": "Lab 6: JSON in the Oracle DB",
             "description": "JSON Documents",
             "publisheddate": "4/05/2020",
             "filename": "../json/json.md"
         },
         {
-            "title": "Lab 8: JSON in the Oracle DB - Advanced",
+            "title": "Lab 7: JSON in the Oracle DB - Advanced",
             "description": "JSON Documents",
             "publisheddate": "4/05/2020",
             "filename": "../json/json-advanced.md"
         },
 		{
-            "title": "Lab 9: Python Programming",
+            "title": "Lab 8: Python Programming",
             "description": "Python Programming",
             "publisheddate": "4/05/2020",
             "filename": "../python/python.md"
