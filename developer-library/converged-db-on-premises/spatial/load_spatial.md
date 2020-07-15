@@ -2,9 +2,12 @@
 
 ## Introduction
 
-This lab will show how to load Spatial data.
+This lab walks you through the steps of creating spatial table with column type SDO\_GEOMETRY. We will see how to insert data into the tables and also add spatial metadata to tables.
 
-## Before You Begin
+**Below lab is completed and spatial data is already loaded into the tables.**
+
+
+### Before You Begin
 
 This lab assumes you have completed the following labs:
 - Lab 1:  Login to Oracle Cloud
@@ -12,8 +15,12 @@ This lab assumes you have completed the following labs:
 - Lab 3:  Create Compute instance 
 - Lab 4:  Environment setup
   
-## Step 1: Create Table Customers,Warehouses and Warehouses_dtp
-   
+## Step 1: Create spatial tables
+
+We have created tables and spatial metadata for CUSTOMERS, WAREHOUSES and WAREHOUSES\_DTP 
+Notice that each has a column of type SDO\_GEOMETRY to store location. 
+
+
    ````
     <copy>
     CREATE TABLE CUSTOMERS                                             
@@ -46,9 +53,11 @@ CREATE TABLE "WAREHOUSES_DTP"
 
     </copy>
 ````
-## Step 2 : Add Spatial metadata for the CUSTOMERS and WAREHOUSES tables to the **USER-SDO-GEOM-METADATA** view. 
+## Step 2 : Add spatial metadata
 
-Each SDO-GEOMETRY column is registered      with a row in   USER-SDO-GEOM-METADATA.
+Next we added Spatial metadata for the CUSTOMERS, WAREHOUSES and WAREHOUSES\_DTP 
+tables to the USER\_SDO\_GEOM\_METADATA view. Each SDO\_GEOMETRY column is registered with a row in USER\_SDO\_GEOM\_METADATA.
+
 
 ````
     <copy>
@@ -72,9 +81,16 @@ Insert into user_sdo_geom_metadata values (
 -	 MDSYS.SDO-DIM-ARRAY: Constructor which holds the MDSYS.SDO-DIM-ELEMENT object,which in turn stores the extents of the spatial data  in each dimension (-180.0, 180.0), and a tolerance value (0.05). The tolerance is a round-off error value used by Oracle Spatial, and is in meters for longitude and latitude data. In this example, the tolerance is 5 mm.
 -	4326: Spatial reference system id (SRID): a foreign key to an Oracle dictionary table  (MDSYS.CS-SRS) tha  contains all the     supported coordinate systems. It is important to associate your customer's location to a coordinate system. In this example, 4326    corresponds to "Longitude / Latitude (WGS 84).".
 
-## Step 3: Insert Spatial data using spatial functions     
-- we use sdo_cs.transform() to convert to our desired coordinate system SRID of 4326, and 
-- we use sdo-geom.validate-geometry() to insert only valid geometries.
+
+We have inserted spatial data and we have used two spatial functions for this.
+ 
+- We use sdo\_cs.transform() to convert to our desired coordinate system SRID of 4326, and 
+- We use sdo\_geom.validate\_geometry() to insert only valid geometries.
+
+
+## Step 3: Sample insert query 
+
+Below is the sample insert query-
 
 ````
     <copy>
@@ -84,10 +100,10 @@ Insert into WAREHOUSES (WAREHOUSE_ID,WAREHOUSE_NAME,LOCATION_ID,WH_GEO_LOCATION)
 ```` 
 
 The elements of the constructor are: 
--	2001: SDO_GTYPE attribute and it is set to 2001 when storing a two-dimensional single point such as a customer's location.
--	4326: This is the spatial reference system ID (SRID): a foreign key to an Oracle dictionary table (MDSYS.CS_SRS) that contains all the supported coordinate systems. It is important to associate your customer's location to a coordinate system. In this example, 4326 corresponds to "Longitude / Latitude (WGS 84)."
--	MDSYS.SDO-POINT-TYPE: This is where you store your longitude and latitude values within the SDO_GEOMETRY constructor. Note that you can store a third value also, but for these tutorials, all the customer data is two-dimensional.
--	NULL, NULL: The last two null values are for storing linestrings, polygons, and geometry collections. For more information on all the fields of the SDO_GEOMETRY object, please refer to the Oracle Spatial Developer's Guide. For this tutorial with point data, these last two fields should be set to NULL.
+-	2001: SDO\_GTYPE attribute and it is set to 2001 when storing a two-dimensional single point such as a customer's location.
+-	4326: This is the spatial reference system ID (SRID): a foreign key to an Oracle dictionary table (MDSYS.CS\_SRS) that contains all the supported coordinate systems. It is important to associate your customer's location to a coordinate system. In this example, 4326 corresponds to "Longitude / Latitude (WGS 84)."
+-	MDSYS.SDO-POINT-TYPE: This is where you store your longitude and latitude values within the SDO\_GEOMETRY constructor. Note that you can store a third value also, but for these tutorials, all the customer data is two-dimensional.
+-	NULL, NULL: The last two null values are for storing linestrings, polygons, and geometry collections. For more information on all the fields of the SDO\_GEOMETRY object, please refer to the Oracle Spatial Developer's Guide. For this tutorial with point data, these last two fields should be set to NULL.
 
 
 
@@ -96,7 +112,7 @@ The elements of the constructor are:
 ## Acknowledgements
 
 - **Authors** - Balasubramanian Ramamoorthy, Arvind Bhope
-- **Contributors** - Laxmi Amarappanavar, Kanika Sharma, Venkata Bandaru, Ashish Kumar, Priya Dhuriya, Maniselvan K.
+- **Contributors** - Laxmi Amarappanavar, Kanika Sharma, Venkata Bandaru, Ashish Kumar, Priya Dhuriya, Maniselvan K, Robert Ruppel.
 - **Team** - North America Database Specialists.
 - **Last Updated By** - Kay Malcolm, Director, Database Product Management, June 2020
 - **Expiration Date** - June 2021   

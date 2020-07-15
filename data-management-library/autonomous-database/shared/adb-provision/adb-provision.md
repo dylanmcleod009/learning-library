@@ -1,14 +1,12 @@
-
-<!-- Updated March 24, 2020 -->
-
 # Provisioning Autonomous Database (ADW and ATP)
 
-
-## Introduction
+## **Introduction**
 
 This lab walks you through the steps to get started using the Oracle Autonomous Database (Autonomous Data Warehouse [ADW] and Autonomous Transaction Processing [ATP]) on Oracle Cloud. You will provision a new ADW instance and connect to the database using Oracle SQL Developer Web.
 
 *Note: While this lab uses ADW, the steps are identical for creating and connecting to an ATP database.*
+
+Estimated time: 5 minutes
 
 ### Objectives
 
@@ -20,7 +18,7 @@ The following lab requires an <a href="https://www.oracle.com/cloud/free/" targe
 
 ### Lab Prerequisites
 
-This lab assumes you have already completed the [Log in to Oracle Cloud] (?lab=lab-1-login-oracle-cloud) lab seen in the menu on the right.  In this lab you will be provisioning an ADB database instance using the cloud console.
+- This lab assumes you have completed the **Login to Oracle Cloud/Sign Up for Free Trial** lab seen in the menu on the right.  In this lab you will be provisioning an ADB database instance using the cloud console.
 
 ### Video Preview
 
@@ -28,7 +26,7 @@ Watch a video demonstration of provisioning a new autonomous data warehouse:
 
 [](youtube:Q6hxMaAPghI)
 
-## STEP 1: Choosing ADW or ATP from the Services Menu
+## **STEP 1**: Choosing ADW or ATP from the Services Menu
 
 1. Login to the Oracle Cloud, as shown in the previous lab.
 2. Once you are logged in, you are taken to the cloud services dashboard where you can see all the services available to you. Click the navigation menu in the upper left to show top level navigation choices.
@@ -53,7 +51,7 @@ Watch a video demonstration of provisioning a new autonomous data warehouse:
 
     ![](./images/Region.png " ")
 
-## STEP 2: Creating the ADB instance
+## **STEP 2**: Creating the ADB instance
 
 1. Click **Create Autonomous Database** to start the instance creation process.
 
@@ -84,7 +82,7 @@ Watch a video demonstration of provisioning a new autonomous data warehouse:
 
 6. Configure the database:
 
-    - __Always Free__ - For this lab, you can select this option to create an always free autonomous database, or not select this option and create a database using your paid subscription. An always free database comes with 1 CPU and 20 GB of storage.
+    - __Always Free__ - For this lab, you can select this option to create an always free autonomous database, or not select this option and create a database using your paid subscription. An always free database comes with 1 CPU and 20 GB of storage. Selecting Always Free will suffice for this lab.
     - __Choose database version__ - Select a database version from the available versions.
     - __OCPU count__ - Number of CPUs for your service. For this lab, specify __2 CPUs__. Or, if you choose an always free database, it comes with 1 CPU.
     - __Storage (TB)__ - Select your storage capacity in terabytes. For this lab, specify __1 TB__ of storage. Or, if you choose an always free database, it comes with 20 GB of storage.
@@ -130,10 +128,12 @@ Please proceed to the next lab.
 
 Click [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/autonomous-workflow.html#GUID-5780368D-6D40-475C-8DEB-DBA14BA675C3) for documentation on the typical workflow for using Autonomous Data Warehouse.
 
-## Acknowledgements
+## **Acknowledgements**
 
-- **Author** - Nilay Panchal, ADB Product Managemnt
+- **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
+- **Contributors** - Oracle LiveLabs QA Team (Jeffrey Malcolm Jr, Intern | Arabella Yao, Product Manager Intern)
 - **Last Updated By/Date** - Richard Green, March 2020
+
 
 See an issue?  Please open up a request [here](https://github.com/oracle/learning-library/issues).   Please include the workshop name and lab in your request.

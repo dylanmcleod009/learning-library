@@ -17,7 +17,7 @@ or
 ## Acknowledgements
 
  - **Author** - Emmanuel Leroy, May 2020
- - **Last Updated By/Date** - Emmanuel Leroy, May 20 2020
+ - **Last Updated By/Date** - Emmanuel Leroy, June 04 2020
 
 
-***To log issues***, submit an Github [issue](https://github.com/oracle/learning-library/issues/new?title=Weblogic%20to%20OCI%20livelab&body=Issue%20with%20Weblogic%20to%20OCI%20livelab).  Please provide the name of the workshop, the link, and the step along with details of the issue.
+***To log issues***, submit an Github [issue](https://github.com/oracle/learning-library/issues/new?title=Weblogic%20to%20OCI&body=Weblogic%20to%20OCI%0A@streamnsight).  Please provide the name of the workshop, the link, and the step along with details of the issue.

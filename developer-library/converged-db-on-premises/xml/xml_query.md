@@ -2,10 +2,10 @@
 
 ## Introduction
 
- This lab will show you how to retrieve the XML contents.
- There are many ways to retrieve the XML Contents. 
+ This lab walks you through different ways to query XML data. XQuery is a very general and expressive language, and SQL/XML functions XMLQuery, XMLTable, XMLExists, and XMLCast combine that power of expression and computation with the strengths of SQL.
+ We can query XMLType data, possibly decomposing the resulting XML into relational data using function XMLTable.
 
-## Before You Begin
+### Before You Begin
 
 This lab assumes you have completed the following labs:
 - Lab 1:  Login to Oracle Cloud
@@ -13,33 +13,19 @@ This lab assumes you have completed the following labs:
 - Lab 3:  Create Compute instance 
 - Lab 4:  Environment setup
 - Note :  All scripts for this lab are stored in the /u01/workshop/xml folder and are run as the oracle user.
-  
+
  
-## Step 1: Login to PDB: Below are the details
-   
-  ````
-    <copy>
-
-   Username: appxml
-   Password: Oracle_4U
-   PDB name: pdbjxl
-   PORT: 1530
-    </copy>
-  ````
-
-## Step 2: Retrieving XML documents
+## Step 1: Getting the number of XML documents. 
    
 ````
-        <copy>
-       SELECT Count(*)FROM   purchaseorder p,  XMLTABLE('for $r in /PurchaseOrder return $r' passing object_value) t;    )
-        /
-       </copy>
+  <copy>
+  SELECT Count(*) FROM   purchaseorder p,  XMLTABLE('for $r in /PurchaseOrder return $r' passing object_value) t;
+  </copy>
 ````
      
    ![](./images/xml_m1.PNG " ")
 
-## Step 3: Retrieving the content of an XML document using pseudocolumn OBJECT_VALUE
-
+## Step 2: Retrieving the content of an XML document-using pseudocolumn OBJECT_VALUE
     
   ````
     <copy>
@@ -52,29 +38,13 @@ This lab assumes you have completed the following labs:
   ![](./images/xml_query_m2.PNG " ")
   ![](./images/xml_m2.PNG " ")
 
-## Step 4:  Accessing fragments or nodes of an XML document
- 
-    
-  ````
-    <copy>
-    SELECT Xmlquery('/PurchaseOrder/Reference' passing object_value returning
-    content)
-    FROM   purchaseorder
-    WHERE  ROWNUM<= 5
-    /
-    
-    </copy>
-  ````
-
-  ![](./images/xml_m3.PNG " ")
-
-## Step 5:  Accessing text node value
+## Step 3:  Accessing text node value
 
   ````
     <copy>
     SELECT xmlcast(xmlquery('$p/PurchaseOrder/Reference/text()' passing object_value AS "p" returning content) AS varchar2(30))
     FROM   purchaseorder
-    WHER ROWNUM<= 5
+    WHERe ROWNUM<= 5
     /
 
     </copy>
@@ -84,12 +54,11 @@ This lab assumes you have completed the following labs:
    ![](./images/xml_query_meth4.PNG " ")
 
 
-## Step 6: Searching xml document
+## Step 4: Searching XML document
      
  ````
     <copy>
-   SELECT t.object_value.getclobval() FROM   purchaseorder t   WHERE  xmlexists('/PurchaseOrder[Reference/text()=$REFERENCE]' 
-   passing    object_value, 'AsniHUNOLD-20141130' AS "REFERENCE" ); )
+   SELECT t.object_value.getclobval() FROM   purchaseorder t   WHERE  xmlexists('/PurchaseOrder[Reference/text()=$REFERENCE]' passing    object_value, 'AHUNOLD-20141130' AS "REFERENCE" )
        /
        
        </copy>
@@ -104,7 +73,7 @@ This lab assumes you have completed the following labs:
 ## Acknowledgements
 
 - **Authors** - Balasubramanian Ramamoorthy, Arvind Bhope
-- **Contributors** - Laxmi Amarappanavar, Kanika Sharma, Venkata Bandaru, Ashish Kumar, Priya Dhuriya, Maniselvan K.
+- **Contributors** - Laxmi Amarappanavar, Kanika Sharma, Venkata Bandaru, Ashish Kumar, Priya Dhuriya, Maniselvan K, Robert Ruppel.
 - **Team** - North America Database Specialists.
 - **Last Updated By** - Kay Malcolm, Director, Database Product Management, June 2020
 - **Expiration Date** - June 2021   

@@ -117,7 +117,7 @@ This lab walks you through the steps to make an OML user and use SQL Developer a
 
     ![](./images/20.png " ")
 
-4. You will download a dataset file from this workshop to load into OML. You can download it by right clicking on the following text link and selecting **Save link as**. Keep the default options when downloading: [Download ML-Prediction-Models.json here](./files/ML-Prediction-Models.json). Then, open your browser window again back to the OML page.
+4. You will download a dataset file from this workshop to load into OML. You can download it by right clicking on the following text link and selecting **Save link as**. Keep the default options when downloading: [Download ML-Prediction-Models.json here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/oaoaQIJWKEKsh0QaEnJfcJ5A7tak48DxjpeCQBSfSJk/n/c4u03/b/solutions-library/o/ML-Prediction-Models.json). Then, open your browser window again back to the OML page.
 
 5. Click **Import** and select **ML-Prediction-Models.json** that you just downloaded.
 

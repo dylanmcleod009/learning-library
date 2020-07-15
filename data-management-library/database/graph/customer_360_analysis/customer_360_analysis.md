@@ -336,11 +336,18 @@ Add reverse edges.
 
 ```
 <copy>
-var cs = sg.<Integer>createChangeSet();
+var cs = sg.&lt;Integer&gt;createChangeSet();
 var rs = sg.queryPgql("SELECT id(a), id(x) MATCH (a)-[]->(x)");
 for (var r : rs) {
    var e = cs.addEdge(r.getInteger(2),r.getInteger(1)).setLabel("purchased_by");
 }
+</copy>
+```
+
+Build the graph with the reverse edges. Query it to verify.
+
+```
+<copy>
 sg = cs.build();
 sg.queryPgql(
 " SELECT ID(r), x.name, LABEL(r), a.account_no" +
@@ -365,10 +372,20 @@ sg.queryPgql(
 
 We will focus on the account no. xxx-yyy-201 (John's account) and run PPR.
 
+Create a vertex set of the vertices used in personalizing the ranking.
+
 ```
 <copy>
-var vertexSet = sg.<Integer>createVertexSet();
+var vertexSet = sg.&lt;Integer&gt;createVertexSet();
 vertexSet.addAll(201);
+</copy>
+```
+
+Then compute the Personalized PageRank.
+
+```
+<copy>
+
 var ppr = analyst.personalizedPagerank(sg, vertexSet);
 </copy>
 ```

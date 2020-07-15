@@ -92,7 +92,7 @@ To **log issues**, click [here](https://github.com/oracle/learning-library/issue
 - Download the Terraform script using the below command.
 
 ```
-<copy>wget https://github.com/oracle/learning-library/blob/master/data-management-library/exacs/scripts/Apex/ORDS-APEX_ExaCS.zip</copy>
+<copy>wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/8tSwgAMJClHVWVbWhHlmzTpS5CVTyxm3lWuDzDN9Jf8/n/orasenatdpltintegration02/b/ExaCSScripts/o/ORDS-APEX_ExaCS.zip</copy>
 ```
 **NOTE: Make sure you have wget installed before running the above command, otherwise run 'brew install wget' beforehand**
 
@@ -269,7 +269,10 @@ TF_VAR_subnet_ocid: "Subnet OCID obtained from OCI"
 ![](./images/apex/Picture202.png " ")
 
 - The URL is as follows:
-http://\<IP address of ORDS server\>:\<ORDS Port\>/ords
+
+```
+http://<IP address of ORDS server>:<ORDS Port>/ords
+```
 
 - Enter the above URL in the browser and you will see APEX Login Page
 

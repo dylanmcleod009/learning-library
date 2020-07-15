@@ -3,51 +3,50 @@
 
 ## Introduction 
 
-**Defining and creating the graph representation**
-
-This section describes how the above tables were modeled as a graph and how the graph representation is generated from them. 
-
-**Note:** This is just a quick and simplified model for illustrative purposes. It includes ORDERS as a vertex entity for convenience. It is possible to model and generate a more compact graph for the same set of tables and relationships between the tables. That model, and process, will be included in an advanced version of this lab.
-
-A first cut at a graph model simply examines the primary key/foreign key relationships and uses the foreign keys to define the edges. 
-
-In this instance the Vertex (or Node) entities are CUSTOMERS, ORDERS, STORES, and PRODUCTS. 
-While the Edge(s) are CUSTOMER ORDERED (from CUSTOMERS to ORDERS), ORDERED BY (the reverse edge from ORDERS to CUSTOMERS), ORDERED FROM STORE (ORDERS to STORES), STORE GOT ORDER (STORES to ORDERS), ORDER HAS PRODUCT (ORDERS to PRODUCTS), and PRODUCT IN ORDER (PRODUCTS to ORDERS)
+This section describes how the tables are modeled as a graph and how the graph representation is generated from them.
+In this instance the Vertex (or Node) entities are CUSTOMERS, ORDERS, STORES, and PRODUCTS.
+While the Edge(s) are CUSTOMER\_ORDERED (from CUSTOMERS to ORDERS), ORDERED\_BY (the reverse edge from ORDERS to CUSTOMERS), ORDERED\_FROM\_STORE (ORDERS to STORES), STORE\_GOT\_ORDER (STORES to ORDERS), ORDER\_HAS\_PRODUCT (ORDERS to PRODUCTS), and PRODUCT\_IN\_ORDER (PRODUCTS to ORDERS)
+A first cut at a graph model simply examines the primary key/foreign key relationships and uses the foreign keys to define the edges.
 
 ## Before You Begin
-
-This lab assumes you have completed the following labs:
-- Lab 1:  Login to Oracle Cloud
-- Lab 2:  Generate SSH Key
-- Lab 3:  Create Compute instance 
-- Lab 4:  Environment setup
-- Note :  Below steps are pre-configured in the image.
-- The Oracle Graph Server and Graph Client must be installed.
-- Max string size parameter should be set to extended.
-- AL16UTF16 (instead of UTF8) must be specified as the NLS NCHAR CHARACTERSET.
-- AL32UTF8 (UTF8) should be the default character set, but AL16UTF16 must be the NLS NCHAR CHARACTERSET.
-
 
 **What Do You Need?**
 
 This lab assumes you have completed the following labs:
 - Lab 1:  Login to Oracle Cloud
 - Lab 2:  Generate SSH Key
-
+- Lab 3:  Create Compute instance 
+- Lab 4:  Environment setup
 
 ## Step 1: Make a JDBC connection to the database:
 At the jshell prompt.
 
 ````
 <copy>
-var jdbcUrl ="jdbc:oracle:thin:@<instance_ip_address>:<DB_Port>/<PDB_Name>";
-var user = "graphuser";
-var pass = "graphuser";
+var jdbcUrl = "jdbc:oracle:thin:@<\instance_ip_address>:<\DB_Port>/SGRPDB";
+
+</copy>
+````
+
+````
+<copy>
+var user = "appgrph";
+</copy>
+````
+
+````
+<copy>
+var pass = "Oracle_4U";
+</copy>
+````
+
+````
+<copy>
 var conn = DriverManager.getConnection(jdbcUrl, user, pass) ;
 </copy>
 ````
 
-**Set auto commit to false. **
+Set auto commit to false.
 
 This is needed for PGQL DDL and other queries.
 
@@ -57,9 +56,8 @@ conn.setAutoCommit(false);
 </copy>
 ````
 
-## Step 2: Get a PgqlConnection 
+Get a PgqlConnection.This will run PGQL queries directly against the VT$ (vertex) and GE$ (edge) tables 
 
-This will run PGQL queries directly against the VT$ (vertex) and GE$ (edge) tables 
 ````
 <copy>
 var pgql = PgqlConnection.getConnection(conn);
@@ -67,9 +65,11 @@ var pgql = PgqlConnection.getConnection(conn);
 ````
 ![](./images/IMGG5.PNG) 
 
-## Step 3: Create View
+## Step 2: Create Graph
 
-Create the required views first for the use of orders and order_items as multiple edge tables. Execute these in sqlplus :
+**Note: Below steps are already completed.**
+
+We have created the views for the use of orders and order_items as multiple edge tables using below commands. 
 
 ````
 <copy>
@@ -84,9 +84,8 @@ Create or replace view po_edge as select * from order_items;
 
 ![](./images/IMGG6.PNG) 
 
-## Step 4: Use property graph query language(PGQL)
 
-We will use a property graph query language [PGQL](http://pgql-lang.org) DDL to define and populate the graph.  The statement is as follows:
+We used a property graph query language [PGQL](http://pgql-lang.org) DDL to define and populate the graph.  The statement is as follows:
 
 ````
 <copy>
@@ -136,14 +135,11 @@ LATITUDE, LONGITUDE)
   )
 </copy>
 ````
-
-Save the above PQGL query as sql file (CreatePropertyGraph.sql) and then run the below command at jshell.
-
-**create the graph-**
+The above PQGL query is saved as sql file (CreatePropertyGraph.sql) and stored in path /u01/graph and is run at jshell prompt.
 
 ````
 <copy>
-pgql.prepareStatement(Files.readString(Paths.get("/u01/CreatePropertyGraph.sql"))).execute();
+pgql.prepareStatement(Files.readString(Paths.get("/u01/graph/CreatePropertyGraph.sql"))).execute();
 </copy>
 ````
 
@@ -179,12 +175,13 @@ select count(distinct eid) from oe_sample_graphge$;
 ````
 
 (eid is the edge id)
+## Step-3:  Required step to print the result of a PGQL statement
 
 Create a convenience function which prepares, executes, and prints the result of a PGQL statement
 
 ````
 <copy>
-Consumer<String> query = q -> { try(var s = pgql.prepareStatement(q)) { s.execute(); s.getResultSet().print(); } catch(Exception e) { throw new RuntimeException(e); } }
+Consumer<\String> query = q -> { try(var s = pgql.prepareStatement(q)) { s.execute(); s.getResultSet().print(); } catch(Exception e) { throw new RuntimeException(e); } }
 </copy>
 ````
 

@@ -9,7 +9,7 @@ The basic building block of an XML document is an element, defined by tags. An e
 For example, XML documents can be very simple, such as the following:
 
 
- ![](./images/xml_snap.PNG " ") 
+ ![](./images/xml_snap.png " ") 
 
 
 **XML with Oracle Database**
@@ -18,11 +18,10 @@ Oracle XML DB is a high-performance, native XML storage and retrieval technology
 
 Oracle XML DB also supports the SQL/XML standard, which allows SQL-centric development techniques to be used to publish XML directly from relational data stored in Oracle Database.XML is an extremely popular way to persist and exchange business critical information.
 
+[](youtube:lGQvxPCYR2c)
+
 Oracle XML DB allows an organization to manage XML content in the same way that ii manages traditional relational data. This allows organizations to save costs and improve return on investment by using a single platform to manage and secure all of their mission critical data. Oracle XML DB was first released with Oracle 9iR2, and it has been enhanced in each subsequent major release of the database.
 
-## Oracle XML Video
-
- [](youtube:lGQvxPCYR2c)
  
 ## Want to learn more
 - [XML](https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/index.html)
@@ -30,7 +29,7 @@ Oracle XML DB allows an organization to manage XML content in the same way that 
 ## Acknowledgements
 
 - **Authors** - Balasubramanian Ramamoorthy, Arvind Bhope
-- **Contributors** - Laxmi Amarappanavar, Kanika Sharma, Venkata Bandaru, Ashish Kumar, Priya Dhuriya, Maniselvan K.
+- **Contributors** - Laxmi Amarappanavar, Kanika Sharma, Venkata Bandaru, Ashish Kumar, Priya Dhuriya, Maniselvan K, Robert Ruppel.
 - **Team** - North America Database Specialists.
 - **Last Updated By** - Kay Malcolm, Director, Database Product Management, June 2020
 - **Expiration Date** - June 2021   

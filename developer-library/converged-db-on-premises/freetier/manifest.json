@@ -1,7 +1,7 @@
 {
     "tutorials": [
         {         
-            "title": "Introduction and Overview",
+            "title": "eShop Intro and Converged DB Overview",
             "description": "Introduction to Converged Database Workshop",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -25,10 +25,10 @@
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/generate-ssh-key/generate-ssh-keys.md"
         },
         {            
-            "title": "Lab 3: Creating Compute Instance",
+            "title": "Lab 3: Create Compute Instance",
             "description": "Setup compute instance running 19c using Terraform script and Resource Manager",
             "publisheddate": "3/24/2020",
-            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/setup-compute/setup-19c-freetier.md"
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/setup-compute/setup-marketplaceoci-freetier.md"
         },
         {         
             "title": "Lab 4: Environment Setup",
@@ -36,26 +36,10 @@
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
             "contentid": "12nnnn",
-            "filename": "../intro/setup.md"
+            "filename": "../setup/setup.md"
         },
         {         
-            "title": "The eShop Story",
-            "description": "Env Setup",
-            "partnumber": "Ennnnn_01",
-            "publisheddate": "03/10/2020",
-            "contentid": "12nnnn",
-            "filename": "../intro/eShop.md"
-        },
-        {         
-            "title": "Introduction to Node.js",
-            "description": "Introduction to Node.js Workshop",
-            "partnumber": "Ennnnn_01",
-            "publisheddate": "03/10/2020",
-            "contentid": "12nnnn",
-            "filename": "../nodejs/intro.md"
-        }, 
-        {         
-            "title": "Lab 1: Node.js Environment Setup",
+            "title": "NODE.JS Lab 1: Intro and Setup",
             "description": "Env Setup",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -63,7 +47,7 @@
             "filename": "../nodejs/setup.md"
         },    
         {         
-            "title": "Lab 2: Node.js Rest API",
+            "title": "NODE.JS Lab 2: Node.js Rest API",
             "description": "",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -71,15 +55,7 @@
             "filename": "../nodejs/postman.md"
         },
         {         
-            "title": "Introduction to JSON",
-            "description": "Introduction to JSON Workshop",
-            "partnumber": "Ennnnn_01",
-            "publisheddate": "03/10/2020",
-            "contentid": "12nnnn",
-            "filename": "../json/intro-json.md"
-        },
-        {         
-            "title": "Lab 1: JSON Environment Setup",
+            "title": "JSON Lab 1: Intro and Setup",
             "description": "Json Environment Setup",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -87,7 +63,7 @@
             "filename": "../json/setup.md"
         },
         {         
-            "title": "Lab 2: Load JSON Data",
+            "title": "JSON Lab 2: Load Json Data",
             "description": "",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -95,7 +71,7 @@
             "filename": "../json/load_json.md"
         },
         {         
-            "title": "Lab 3: Insert and Update JSON Data",
+            "title": "JSON Lab 3: Insert and Update Json Data",
             "description": "",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -103,7 +79,7 @@
             "filename": "../json/insert_json.md"
         },
         {         
-            "title": "Lab 4: Usage of JSON Functions",
+            "title": "JSON Lab 4: Usage of Json Functions",
             "description": "",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -111,15 +87,7 @@
             "filename": "../json/json_fun.md"
         },
         {         
-            "title": "Introduction to XML",
-            "description": "Introduction to XML ",
-            "partnumber": "Ennnnn_01",
-            "publisheddate": "03/10/2020",
-            "contentid": "12nnnn",
-            "filename": "../xml/intro-xml.md"
-        },
-        {         
-            "title": "Lab 1: XML Environment Setup",
+            "title": "XML Lab 1: Setup",
             "description": "Env setup",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -127,7 +95,7 @@
             "filename": "../xml/setup_xml.md"
         },
         {         
-            "title": "Lab 2: Query XML Content",
+            "title": "XML Lab 2: Query XML Content",
             "description": "Env setup",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -135,7 +103,7 @@
             "filename": "../xml/xml_query.md"
         },
         {         
-            "title": "Lab 3: Insert and Update XML Data",
+            "title": "XML Lab 3: Insert and Update XML Data",
             "description": "Env setup",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -143,7 +111,7 @@
             "filename": "../xml/xml_insert.md"
         },
         {         
-            "title": "Lab 4: Usage of XML Function",
+            "title": "XML Lab 4: Usage of XML Function",
             "description": "Env setup",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -151,15 +119,7 @@
             "filename": "../xml/xml_fun.md"
         },
         {         
-            "title": "Introduction to Spatial",
-            "description": "Introduction to Spatial Workshop",
-            "partnumber": "Ennnnn_01",
-            "publisheddate": "03/10/2020",
-            "contentid": "12nnnn",
-            "filename": "../spatial/intro-spatial.md"
-        },
-        {         
-            "title": "Lab 1: Spatial Environment Setup",
+            "title": "SPATIAL Lab 1: Setup",
             "description": "Env Setup",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -167,7 +127,7 @@
             "filename": "../spatial/spatial_env_setup.md"
         },
         {         
-            "title": "Lab 2: Load Data and Metadata",
+            "title": "SPATIAL Lab 2: Load Data and Metadata",
             "description": "",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -175,7 +135,7 @@
             "filename": "../spatial/load_spatial.md"
         },
         {         
-            "title": "Lab 3: Spatial Indexing",
+            "title": "SPATIAL Lab 3: Spatial Indexing",
             "description": "",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -183,7 +143,7 @@
             "filename": "../spatial/spatial_index.md"
         },
         {         
-            "title": "Lab 4: Usage of Spatial Functions",
+            "title": "SPATIAL Lab 4: Usage of Spatial Functions",
             "description": "",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -191,15 +151,7 @@
             "filename": "../spatial/spatial_fun.md"
         },
         {         
-            "title": "Introduction to Graph",
-            "description": "Introduction to Oracle Graph Workshop",
-            "partnumber": "Ennnnn_01",
-            "publisheddate": "03/10/2020",
-            "contentid": "12nnnn",
-            "filename": "../graph/intro.md"
-        },
-        {         
-            "title": "Lab 1: Property Graph  Environment setup",
+            "title": "GRAPH Lab 1: Intro and Setup",
             "description": "Which products did customer 40202 buy from which store(s)?",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -207,7 +159,7 @@
             "filename": "../graph/Oracle-Graph-Setup.md"
         },
         {         
-            "title": "Lab 2:  Defining Graph",
+            "title": "GRAPH Lab 2:  Defining Graph",
             "description": "",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -215,7 +167,7 @@
             "filename": "../graph/Oracle-Graph-Define.md"
         },
         {         
-            "title": "Lab 3: Querying graph via PGQL",
+            "title": "GRAPH Lab 3: Querying graph via PGQL",
             "description": "",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -223,7 +175,7 @@
             "filename": "../graph/Oracle-Graph-Lab1.md"
         },
         {         
-            "title": "Lab 4: Loading the Graph into memory and Querying graph",
+            "title": "GRAPH Lab 4: Loading the Graph into memory and Querying graph",
             "description": "",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -231,7 +183,7 @@
             "filename": "../graph/Oracle-Graph-Lab6.md"
         },
         {         
-            "title": "Lab 4: Graph Visualization",
+            "title": "GRAPH Lab 5: Graph Visualization",
             "description": "",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",
@@ -239,15 +191,7 @@
             "filename": "../graph/Oracle-Graph-Lab3.0.md"
         },
         {         
-            "title": "Introduction to Cross Datatype",
-            "description": "Introduction to Oracle Graph Workshop",
-            "partnumber": "Ennnnn_01",
-            "publisheddate": "03/10/2020",
-            "contentid": "12nnnn",
-            "filename": "../crossdatatype/intro.md"
-        },
-        {         
-            "title": "Lab 1: Usage of Cross Datatype",
+            "title": "CROSS Lab 1: Intro and Usage",
             "description": "Which products did customer 40202 buy from which store(s)?",
             "partnumber": "Ennnnn_01",
             "publisheddate": "03/10/2020",

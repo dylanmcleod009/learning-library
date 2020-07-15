@@ -43,14 +43,14 @@ For the microservices to talk to the ATP instances, we need to create an OCI
 
   ![](images/b5353f252300596df91d16bd1ef80e51.png " ")
 
-3.  Edit the `setupOSB.sh` with `vi` and set the following variables. You can expand
+3.  Edit the `setupOSB.sh` with `nano` (or `vi`) and set the following variables. You can expand
     the cloud shell window for convenience, by clicking the maximize button on
     the top-right corner of the Cloud Shell.
 
   ![](images/d0f8e6db2e57f3c9690e4a6a48c2e487.png " ")
 
     ```
-    <copy>vi setupOSB.sh</copy>
+    <copy>nano setupOSB.sh</copy>
     ```
 
   ![](images/5585b29d866e1b039318d2e16e84d989.png " ")
@@ -68,14 +68,15 @@ For the microservices to talk to the ATP instances, we need to create an OCI
     \--from-file=privatekey=<PRIVATEKEY_FILE_LOCATION>
     ```
 
-5. Keep in mind that `<USER_ID>` is not equal to `<USER_OCID>`, and it is a new parameter not used yet. Leave it as your username. In our example it’s `msdataworkshop.user1`.
+5. Note that `<USER_ID>` is not equal to `<USER_OCID>`. Rather, `<USER_ID>` is the username of your account. If your account is federated, it will begin with `oracleidentitycloudservice/`.
 
+    - `<USER_ID>` - is your username
     - `<TENANCY_OCID>` - is the Tenancy OCID
     - `<USER_OCID>` - is the User OCID
     - `<USER_FINGERPRINT>` - is the fingerprint value created when adding the Public key in the console
     - `<REGION_CODE>` - is the Region identifier
     - `<PRIVATEKEY_PASSPHRASE>` - is the passphrase used to create the Private key file
-    - `<PRIVATEKEY_FILE_LOCATION>` - is the absolute path for Private key file location
+    - `<PRIVATEKEY_FILE_LOCATION>` - is the absolute path for Private key file location (Do not use `~` in the path.). You should have recorded this information in lab 1 and it should be in the format of /home/USER/.oci/user1\_api\_key\_private.pem(you will need to replace USER in the file path with your user).
 
     Once you have edited the two `kubectl` commands, the result should look
     something like this.
@@ -100,7 +101,14 @@ For the microservices to talk to the ATP instances, we need to create an OCI
 
   ![](images/7fc70a49ddb3a78e095f22785266c3be.png " ")
 
-7.  (Optional) If the broker is still not ready, continue to check again with the
+8. If you run into trouble, run these commands to back out the `ocicredentials` and `clusterrolebinding`:
+
+    ```
+    <copy>kubectl delete secret ocicredentials
+    kubectl delete clusterrolebinding cluster-admin-brokers</copy>
+    ```
+
+9.  (Optional) If the broker is still not ready, continue to check again with the
     commands:
 
     ```
@@ -139,10 +147,10 @@ You will now use the created OCI service broker and create bindings to the
 
   ![](images/670c73c7cd087d66e2043567e402f55a.png " ")
 
-2. Edit the `setupATP.sh` with `vi`.
+2. Edit the `setupATP.sh` with `nano` or `vi`.
 
     ```
-    <copy>vi setupATP.sh</copy>
+    <copy>nano setupATP.sh</copy>
     ```
 
   ![](images/9091a5da45fb894fda742dfe3a91bc5d.png " ")
@@ -272,6 +280,8 @@ You will verify the connectivity from the frontend Helidon microservice
 
   ![](images/430872b9b99ce788dddb45c5e1de71ce.png " ")
 
+  *If you do not see the correct results immediate wait a few minutes and click testdatasources again.*
+
   The frontend is calling the `atpaqadmin` service and has successfully established
   connections to both databases `orderpdb` and `inventorypdb`.
 
@@ -287,7 +297,7 @@ In this step you will set up the AQ messaging queue by creating database
   ![](images/8b3a05eecdbc4b140ac4fc81c8d49c89.png " ")
 
 2.  If you don’t see the two ATP instances, make sure you have selected the
-    right compartment:
+    right compartment.
 
   ![](images/4097cb788800a3a28dcd3a349698d0f0.png " ")
 
@@ -295,10 +305,11 @@ In this step you will set up the AQ messaging queue by creating database
 
   ![](images/6873d607319af22e64d0aa11f8bd2ed8.png " ")
 
-4.  On the InventoryDB page click **DB Connection**, select the
-    regional Wallet and download the zip file.
+4.  On the InventoryDB page click **DB Connection**, select the regional Wallet and download the zip file.
 
   ![](images/d4ffd87731799f3961dfa13f36dd44a1.png " ")
+
+  *Note: Make sure you select Regional Wallet.*
 
   ![](images/1b05d273a509a51f681e0efc514f09f4.png " ")
 
@@ -344,7 +355,7 @@ In this step you will set up the AQ messaging queue by creating database
 
   ![](images/ed954be119a3586da81bc9ee928da70c.png " ")
 
-11. On the next page confirm the defaults and click **Create Pre-Authenticated Request**. Once created, copy the Pre-authenticated request URL, as it will not be shown again.
+11. On the next page confirm the defaults and click **Create Pre-Authenticated Request**. Once created, copy the Pre-authenticated request URL, as it will not be shown again. Save the URL in your text file.
 
   ![](images/3caac1410392a9c844675c60b166a371.png " ")
 
@@ -356,10 +367,10 @@ In this step you will set up the AQ messaging queue by creating database
 
   ![](images/7b2c01d83a10447de8761c7843183d16.png " ")
 
-13. Edit the Kubernetes deployment file `atpaqadmin-deployment.yaml` with vi.
+13. Edit the Kubernetes deployment file `atpaqadmin-deployment.yaml` with nano.
 
     ```
-    <copy>vi atpaqadmin-deployment.yaml</copy>
+    <copy>nano atpaqadmin-deployment.yaml</copy>
     ```
 
   ![](images/341f75a208337ea66db5a007dc7c1664.png " ")
@@ -582,14 +593,14 @@ saga pattern, which instead of defining commits and rollbacks, allows each
 service to perform its own local transaction and published an event. The other
 services listen to that event and perform the next local transaction.
 
-In this architecture, there is a frontend service which mimics some Mobile App
+In this architecture, there is a frontend service which mimics some mobile app
 requests for placing orders. The frontend service is communicating with the
 order service to place an order. The order service is then inserting the order
-into the Order database, while also sending a message describing that order.
+into the order database, while also sending a message describing that order.
 This approach is called the event sourcing pattern, which due to its decoupled
 non-locking nature is prominently used in microservices. Event sourcing pattern
 entails sending an event message for every work or any data manipulation that
-was conducted. In this example, while the order was inserted in the Order
+was conducted. In this example, while the order was inserted in the order
 database, an event message was also created in the Advanced Queue of the Oracle
 database.
 
@@ -642,6 +653,7 @@ next lab.
 ## Acknowledgements
 * **Author** - Paul Parkinson, Consulting Member of Technical Staff
 * **Adapted for Cloud by** -  Nenad Jovicic, Enterprise Strategist, North America Technology Enterprise Architect Solution Engineering Team
-* **Last Updated By/Date** - Tom McGinn, May 2020
+* **Contributors** - Jaden McElvey, Technical Lead - Oracle LiveLabs Intern
+* **Last Updated By/Date** - Tom McGinn, June 2020
 
 See an issue?  Please open up a request [here](https://github.com/oracle/learning-library/issues).   Please include the workshop name and lab in your request.

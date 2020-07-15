@@ -13,13 +13,13 @@ In this section, you will learn how to use an automation that creates a custom i
 
 You will have to generate a config file for oci in **/home/user/.oci/config**. If you are running the code as root, the path will be: **/root/.oci/config**
 
-The contents of this file should be:
+The contents of this file should look like:
 ```
 [DEFAULT]
-user=ocid1.user.oc1..aaaaaaaav6zc6gd6attdvesbaqj2klp2mribm4rfacbstzk7sag6yhmzetqa
-fingerprint=d7:07:3f:b6:f6:f1:ce:d3:0e:fd:24:e7:20:f0:3f:6a
-key_file=/root/.oci/oci_api_key.pem
-tenancy=ocid1.tenancy.oc1..aaaaaaaaksusyefovxt64bsovu523r5ez6qz25pcnqjw2a243qjmft5n7drq
+user=ocid1.user.........
+fingerprint=.........
+key_file=path_to_oci_api_private_key
+tenancy=ocid1.tenancy......
 region=us-ashburn-1
 ```
 

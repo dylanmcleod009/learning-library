@@ -1,109 +1,125 @@
-# Use Case: Customer 360 analysis #
+# Use Case: Customer 360 Graph Visualization#
 
 ## Overview
-This example shows how integrating multiple datasets, using a graph, facilitates additional analytics can lead to new insights. We will use three small datasets for illustrative purposes. The first contains accounts and account  owners. The second is purchases by the people who own those accounts. The third is transactions between these accounts.
+The results of the analyses done in the previous labs can easily be visualized using Graph Visualization feature.
 
-The combined dataset is then used to perform the following common graph query and analyses: pattern matching, detection of cycles, finding important nodes, community detection, and recommendation.
+The following video provides an overview of the visualization component.
+[](youtube:zfefKdNfAY4)
 
-**Note:** This lab assumes you have successfully completed Lab 8 and published the graph. It also assumes the Graph Visualization component is up and running on the compute instance on `public_ip_for_compute:7007/ui`.
+### Prerequisites
+This lab assumes you have successfully completed Lab 8 and published the graph. It also assumes the Graph Visualization component is up and running on the compute instance on `public_ip_for_compute:7007/ui`.
 
-## Graph Visualization
+We will use the Graph Visualization component to explore the graph and run some PGQL queries.
 
-Next we will use the Graph Visualization component to explore the graph and run some PGQL queries.
-Open the Graph Viz at `http://<public_ip_for_free_tier_compute>:7007/ui`. Replace `public_ip_for_free_tier_compute` with the one for your instance.
+## STEP 0: Setup
 
-You should see a screen similar to the screenshot below.  
-![GraphViz on startup](../images/ADB_GViz_Landing.png)
+1. Open the Graph Viz at `http://<public_ip_for_free_tier_compute>:7007/ui`. Replace `<public_ip_for_free_tier_compute>` with the one for your Graph Server compute instance.
 
+    You should see a screen similar to the screenshot below.  
+    ![GraphViz on startup](../images/ADB_GViz_Landing.png " ")
 
-Modify the query to get the first 50 rows, i.e. change LIMIT 10 to LIMIT 50, and click Run.
+### Troubleshooting
+If you have a `Page Not Found` error, the graph you published at Lab 8 may expire. You can try to redo Lab 8 (only Step 0, 1, and 7) to publish the graph.
 
-You should see a graph similar to the screenshot below.  
-![Customer 360 graph](../images/ADB_GViz_Show50Elements.png)
+## STEP 1: Modify query
+1. Modify the query to get the first 50 rows, i.e. change LIMIT 10 to LIMIT 50, and click Run.
 
+    You should see a graph similar to the screenshot below.  
+    ![Customer 360 graph](../images/ADB_GViz_Show50Elements.png " ")
+
+## STEP 2: Add highlights
 Now let's add some labels and other visual context. These are known as highlights.  
-**Note:** If you did the first lab (Setup witn Docker) and cloned the `oracle-pg` repo then the required `highlights.json` file is in the `customer_360` folder. If however you are doing tis (Setup with Free Tier) lab by itself then click on this link [download highlights.json](highlights.json) to download it.
+*Note: If you did the Lab: Setup with Docker and cloned the `oracle-pg` repo, then the required `highlights.json` file is in the `customer_360` folder.
+If however you are doing the Setup Graph with Free Tier Lab by itself, then left-click on <a href="highlights.json" download="highlights.json" target="\_blank">this link</a> to download it.*
 
-Click on the Load button under Highlights (on the right side of the screen). Browse to the appropriate folder (i.e. either to `oracle-pg/graphs/customer_360`  or the folder where you just downloaed it) and choose the file named 'highlights.json' and click Open to load that.  
-![Load highlights for graph](../../customer_360_analysis/images/GraphVizLoadHighlights.png)
+1. Click on the Load button under Highlights (on the right side of the screen). Browse to the appropriate folder (i.e. either to `oracle-pg/graphs/customer_360`  or the folder where you just downloaded it) and choose the file named 'highlights.json' and click Open to load that.  
+![Load highlights for graph](../../customer_360_analysis/images/GraphVizLoadHighlights.png " ")
 
-The graph should now look like  
-![Customer 360 graph with highlights](../../customer_360_analysis/images/GraphVizWithHighlights.png)
+    The graph should now look like  
+    ![Customer 360 graph with highlights](../../customer_360_analysis/images/GraphVizWithHighlights.png " ")
 
-### Pattern matching with PGQL
-Next let's run a few PGQL queries. 
+    
 
-The [pgql-lang.org](http://pgql-lang.org) site and [specification](http://pgql-land.org/spec/1.2) are the best reference for details and examples. For the purposes of this lab, however, here are minimal basics. 
+## STEP 3: Pattern matching with PGQL
+1. Next let's run a few PGQL queries. 
 
-The general structure of a PGQL query is
-```
-SELECT <select list>
-FROM <graph_name> 
-MATCH <graph_pattern>
-WHERE <condition>
-```
+    The [pgql-lang.org](http://pgql-lang.org) site and [Specification](http://pgql-lang.org/spec/1.2) are the best references for details and examples. For the purposes of this lab, however, here are minimal basics.
 
-PGQL provides a specific construct known as the MATCH clause for matching graph patterns. A graph pattern matches vertices and edges that satisfy the given conditions and constraints.  
-- `(v)` indicates a vertex variable `v`   
-- `-` indicates an undirected edge, as in (source)-(dest)  
-- `->` an outgoing edge from source to destination  
-- `<-` an incoming edge from destination to source  
-- `[e]` indicates an edge variable `e`
+    The general structure of a PGQL query is
+    ```
+    SELECT <select list>
+    FROM <graph_name> 
+    MATCH <graph_pattern>
+    WHERE <condition>
+    ```
 
-Let's find accounts that have had an outbound and and inbound transfer of over 500 on the same day.
+    PGQL provides a specific construct known as the *MATCH* clause for matching graph patterns. A graph pattern matches vertices and edges that satisfy the given conditions and constraints.  
+    - `(v)` indicates a vertex variable `v`   
+    - `-` indicates an undirected edge, as in (source)-(dest)  
+    - `->` an outgoing edge from source to destination  
+    - `<-` an incoming edge from destination to source  
+    - `[e]` indicates an edge variable `e`
 
-The PGQL query for this is:
-```
-<copy>SELECT * 
-MATCH (FromAcct)-[TransferOut:transfer]->(ToAcct1), (ToAcct2)-[TransferIn:transfer]->(FromAcct)
-WHERE TransferOut.date = TransferIn.date and TransferOut.amount > 500 and TransferIn.amount > 500
-</copy>
-```
-In the query text above (FromAcct) indicates the source vertex and (ToAcct1) the destination, while [TransferOut:transfer] is the edge connecting them. The [:transfer] specifies that the TransferOut edge has  the label 'transfer'. The comma (',') between the two patterns is an AND condition. 
+2. Let's find accounts that have had an outbound and and inbound transfer of over 500 on the same day.
 
-Copy and paste the query into the PGQL Graph Query text input box of the GraphViz application.
+    The PGQL query for this is:
+    ```
+    <copy>
+    SELECT * 
+    MATCH (FromAcct)-[TransferOut:TRANSFER]->(ToAcct1), (ToAcct2)-[TransferIn:TRANSFER]->(FromAcct)
+    WHERE TransferOut.DATE = TransferIn.DATE and TransferOut.AMOUNT > 500 and TransferIn.AMOUNT > 500
+    </copy>
+    ```
+    In the query text above, (FromAcct) indicates the source vertex and (ToAcct1) the destination, while [TransferOut:TRANSFER] is the edge connecting them. The [:TRANSFER] specifies that the TransferOut edge has the label 'TRANSFER'. The comma (',') between the two patterns is an AND condition.
+
+3. Copy and paste the query into the PGQL Graph Query text input box of the GraphViz application.
 Click Run.
 
-The result should look as shown below.
+    The result should look as shown below.
 
-![Same day txns of more than 500](../images/ADB_Gviz_SameDayTransfers.png)
+    ![Same day txns of more than 500](../images/ADB_Gviz_SameDayTransfers.png " ")
 
-The next query finds patterns of transfers to and from the same two accounts, i.e. from A->B and back B->A.
+4. The next query finds patterns of transfers to and from the same two accounts, i.e. from A->B and back B->A.
 
-The PGQL query for this is:
-```
-<copy>SELECT * 
-MATCH (FromAcct)-[TransferOut:transfer]->(ToAcct)-[TransferIn:transfer]->(FromAcct)
-WHERE TransferOut.date < TransferIn.date 
-</copy>
-```
+    The PGQL query for this is:
+    ```
+    <copy>
+    SELECT * 
+    MATCH (FromAcct)-[TransferOut:TRANSFER]->(ToAcct)-[TransferIn:TRANSFER]->(FromAcct)
+    WHERE TransferOut.DATE < TransferIn.DATE 
+    </copy>
+    ```
 
-Copy and paste the query into the PGQL Graph Query text input box of the GraphViz application.
-Click Run.
+5. Copy and paste the query into the PGQL Graph Query text input box of the GraphViz application. Click Run.
 
-The result should look as shown below.
+    The result should look as shown below.
 
-![Transfer A to B to A](../images/ADB-GViz_ABA_Transfer.png)
+    ![Transfer A to B to A](../images/ADB-GViz_ABA_Transfer.png " ")
 
-Let's add one more account to that query to find a circular transfer pattern between 3 accounts. 
+6. Let's add one more account to that query to find a circular transfer pattern between 3 accounts. 
 
-The PGQL query becomes:
-```
-<copy>SELECT * 
-MATCH (FromAcct)-[TxnAB:transfer]->(ToAcctB)-[TxnBC:transfer]->(ToAcctC)-[TxnCA:transfer]->(FromAcct)
-WHERE TxnAB.date < TxnBC.date and TxnBC.date < TxnCA.date
-</copy>
-```
+    The PGQL query becomes:
+    ```
+    <copy>
+    SELECT *
+    MATCH (FromAcct)-[TxnAB:TRANSFER]->(ToAcctB)-[TxnBC:TRANSFER]->(ToAcctC)-[TxnCA:TRANSFER]->(FromAcct)
+    WHERE TxnAB.DATE < TxnBC.DATE and TxnBC.DATE < TxnCA.DATE
+    </copy>
+    ```
 
-Copy and paste the query into the PGQL Graph Query text input box of the GraphViz application.
-Click Run.
+7. Copy and paste the query into the PGQL Graph Query text input box of the GraphViz application. Click Run.
 
-The result should look as shown below.
+    The result should look as shown below.
 
-![Circular transfer A to B to C to A](../images/ADB_GViz_ABCA_Transfer.png)
+    ![Circular transfer A to B to C to A](../images/ADB_GViz_ABCA_Transfer.png " ")
 
 
 ## Acknowledgements ##
 
-- **Author** - Jayant Sharma - Product Manager, Spatial and Graph.  
-With a little help from colleagues (Albert Godfrind and Ryota Yamanaka).
+* **Author** - Jayant Sharma, Product Manager, Spatial and Graph.  
+
+* **Contributors** - With a little help from colleagues (Albert Godfrind and Ryota Yamanaka). And lots from Jenny Tsai. Thank you.
+
+* **Last Updated By/Date** - Arabella Yao, Product Manager Intern, Database Management, July 2020
+
+See an issue?  Please open up a request [here](https://github.com/oracle/learning-library/issues).   Please include the workshop name and lab in your request.

@@ -27,7 +27,7 @@ Estimated time: 20 - 30 minutes
 ### Lab Prerequisites
 
 This lab assumes you have completed the following labs:
-- Register for Free Tier Account
+- Login to Oracle Cloud/Sign Up for Free Tier Account
 - Connect and Provision ADB
 
 ## Step 1: Create ML User
@@ -303,5 +303,6 @@ Please proceed to the next lab.
 
 - **Author** - Derrick Cameron
 - **Last Updated By/Date** - Anoosha Pilli, Product Manager, DB Product Management, May 2020
+- **Contributors** - Peter Jeffcock, Arabella Yao, Ayden Smith, Jeffrey Malcolm Jr, June 2020
 
 See an issue?  Please open up a request [here](https://github.com/oracle/learning-library/issues).   Please include the workshop name and lab in your request.

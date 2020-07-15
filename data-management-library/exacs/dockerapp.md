@@ -79,7 +79,7 @@ To **log issues**, click [here](https://github.com/oracle/learning-library/issue
 - Now ssh into the Oracle compute instance and run the below command to get the zip file containing the docker application
 
 ```
-<copy>wget -O docker.zip https://objectstorage.us-ashburn-1.oraclecloud.com/p/xs3Y4D_IHVCVIyPpAjq1Fr2woO-MMso-xNbmnbh3NGk/n/orasenatdpltintegration02/b/ExaCSScripts/o/nodeappDocker.zip </copy>
+<copy>wget -O docker.zip https://objectstorage.us-ashburn-1.oraclecloud.com/p/xs3Y4D_IHVCVIyPpAjq1Fr2woO-MMso-xNbmnbh3NGk/n/orasenatdpltintegration02/b/ExaCSScripts/o/nodeappDocker.zip</copy>
 ```
 
 Note: Application aOne is a sample marketplace application and requires schema and seed data to be deployed in the backend
@@ -106,9 +106,9 @@ vi dbconfig.js
 
 ![](./images/dockerApp/dbconfig.png " ") 
 
-- Now the we'll deploy docker image.
+- Now we'll deploy docker image.
 
-NOTE: To check if the docker is installed run the below command
+**NOTE: To check if the docker is installed, run the below command.**
 
 ```
 <copy>docker -v</copy>
@@ -129,7 +129,7 @@ With the dbconfig.js file edited with the appropriate ExaCS credentials, let us 
 ```
 <copy>docker build -t aone:1 .</copy>
 ```
-**NOTE: When running the docker build command make sure in the same directory as dockerfile, In this case /nodeappDocker**
+**NOTE: When running the docker build command, make sure you are in the same directory as dockerfile. In this case, that would be nodeappDocker.**
 
 Once the docker image build is done, you can find the image by running the below command
 ```
@@ -148,7 +148,7 @@ Once the docker image build is done, you can find the image by running the below
 
 ![](./images/dockerApp/docker_run.png " ") 
 
-**NOTE: When running the docker run command make sure port 3050 is open for the compute instance**
+**NOTE: When running the docker run command, make sure port 3050 is open for the compute instance.**
 
 - Run the below command to check the logs. 
 
@@ -158,9 +158,9 @@ Once the docker image build is done, you can find the image by running the below
  
 ![](./images/dockerApp/docker_logs.png " ")
 
-- To check the app on the browser, you have bridged port 3050 on the container to your compute instance
+- You have now bridged port 3050, on the container, to your compute instance
 
-- Open browser on your local machine and go to http://public_ip_of_your_compute_instance:3050
+- To check the app, open your browser on your local machine and go to http://public_ip_of_your_compute_instance:3050
 
 ![](./images/dockerApp/nodeapp.png)
 

@@ -86,7 +86,7 @@ While you are working on the challenge, think about the following questions:
 ### Step 3: Review and fine tune your sensitive data model
 
 - On the **Non-Dictionary Referential Relationships** page, you are presented with a list of potential non-dictionary (application level) referential relationships that Data Discovery found by using column name patterns and column data patterns. Do the following:
-  - To view all of the columns, move the **Expand All** slider to the right. Data Discovery found some potentially sensitive columns (non-dictionary referential relationships) in the `PU_PETE` schema.
+  - To view all of the columns, move the **Expand All** slider to the right. Data Discovery found some potentially sensitive columns (non-dictionary referential relationships) in the `HR` schema.
 
 ![](./images/dbsec/datasafe/discovery/non-dictionary.png " ")
 

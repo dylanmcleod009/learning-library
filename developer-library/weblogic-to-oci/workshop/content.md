@@ -13,6 +13,7 @@ Perform the end-to-end migration of a local WebLogic domain to Oracle Cloud Infr
 
 **The entire process may take 3 hours to complete, including provisioning time.**
 
+***Questions? Feedback?***, submit an Github [ticket](https://github.com/oracle/learning-library/issues/new?title=Feedback%20Weblogic%20to%20OCI&body=@streamnsight%0A).
 
 ## Requirements
 
@@ -52,8 +53,10 @@ This repository makes use of Oracle docker images which are licensed and need to
   - Then fetch the image: 
 
     ```bash
+    <copy>
     docker pull store/oracle/weblogic:12.2.1.4
-    ``` 
+    </copy>
+    ```
 
 - Sign in to the **Oracle Container Registry** and accept the license terms for the Database image at:</br>
   <a href="https://container-registry.oracle.com/pls/apex/f?p=113:4:102331870967997::NO:::" target="_blank">https://container-registry.oracle.com/pls/apex/f?p=113:4:102331870967997::NO:::</a>
@@ -61,7 +64,9 @@ This repository makes use of Oracle docker images which are licensed and need to
   - Then fetch the image:
 
     ```bash
+    <copy>
     docker pull container-registry.oracle.com/database/enterprise:12.2.0.1
+    </copy>
     ``` 
 
 - Go to the **Instant Client** page and accept the license terms for the SQL Plus client at:</br>
@@ -70,7 +75,9 @@ This repository makes use of Oracle docker images which are licensed and need to
   - Then fetch the image:
 
     ```bash
+    <copy>
     docker pull store/oracle/database-instantclient:12.2.0.1
+    </copy>
     ```
 
 # WebLogic Migration Lab steps
@@ -83,8 +90,10 @@ See Requirements to get the code and the required Docker images.
 
 To startup the local environment stack that will simulate our 'on-premises' environment, run:
 ```
+<copy>
 cd on-prems-setup
 docker-compose up -d
+</copy>
 ```
 This step can take several minutes because some images need to be built. 
 
@@ -105,7 +114,9 @@ The console will be available at <a href="http://localhost:7001/console" target=
 To check status of the initialization, you can check if the `on-prems-setup_oracledbinit_1` container has finished running by running:
 
 ```
+<copy>
 docker ps
+</copy>
 ```
 The following output shows the init container has terminated and the system should be ready:
 ```
@@ -119,11 +130,15 @@ If you see a container called `on-prems-setup_oracledbinit`, this means the init
 To troubleshoot problems in the setup, check the logs in the docker containers with:
 
 ```bash
+<copy>
 docker logs -t on-prems-setup_wls_admin_1
+</copy>
 ```
 or
 ```bash
+<copy>
 docker logs -t on-prems-setup_oracledb_1
+</copy>
 ```
 
 Before proceeding, make sure the local environment has been deployed properly and is running. 
@@ -148,13 +163,17 @@ We'll create a SSH key pair in this folder
 - Get inside the Oracle Database container:
 
 ```bash
+<copy>
 docker exec -it on-prems-setup_oracledb_1 /bin/bash
+</copy>
 ```
 
 - Create the SSH keypair
 
 ```bash
+<copy>
 ssh-keygen
+</copy>
 ```
 and just hit `Enter` (default) for all the prompts
 
@@ -270,7 +289,9 @@ If we were migrating a JRF domain (which is not the case here), the Virtual Clou
 
    To output the public key information, use the following command from inside the docker container
    ```
+   <copy>
    cat ~/.ssh/id_rsa.pub
+   </copy>
    ```
    Copy the output of the command (the whole multi-line output) and paste it in the form field for SSH key in the form
 
@@ -552,13 +573,17 @@ DataPump export function creates a DDL + data dump of the user schema, which is 
 
 
 ```
+<copy>
 docker exec -it on-prems-setup_oracledb_1 /bin/bash
+</copy>
 ```
 Note: you should already be inside the DB container from the SSH key creation step, so you can skip the above step unless you exited the container
 
 Then get into the `/datapump` folder
 ```
+<copy>
 cd ~/datapump
+</copy>
 ```
 
 ### 5.2) `datapump_export.sh` script
@@ -591,7 +616,9 @@ expdp system/${DB_PWD}@${DB_HOST}:${DB_PORT}/${DB_PDB}.${DB_DOMAIN} schemas=RIDE
 ### 5.2.1) run the `datapump_export.sh` script
 
 ```
+<copy>
 ./datapump_export.sh
+</copy>
 ```
 
 The output will look like
@@ -669,7 +696,9 @@ echo "Done!"
 ### 5.3.2) run the `datapump_import.sh` script
 
 ```bash
+<copy>
 ./datapump_import.sh
+</copy>
 ```
 
 The import script runs in 4 phases: 
@@ -705,21 +734,27 @@ Migration with WebLogic Deploy Tooling (WDT) consists in 3 steps:
 - If you were in the Database container to perform the previous steps of database migration, exit the database container with 
 
    ```bash
+   <copy>
    exit
+   </copy>
    ```
    You should be back on your local computer shell prompt
 
 - Get into the **WebLogic** docker container with the following command:
 
   ```bash
+  <copy>
   docker exec -it on-prems-setup_wls_admin_1 /bin/bash
+  </copy>
   ```
 
 - run the `install_wdt.sh` script
 
   ```bash
+  <copy>
   cd ~/wdt
   ./install_wdt.sh
+  </copy>
   ```
 
   This will install WebLogic Deploy Tooling locally in a folder `weblogic-deploy`
@@ -791,7 +826,9 @@ Applications found under `ORACLE_HOME` will have a path that includes `@@ORACLE_
 - run the `discover_domain.sh` script
 
   ```bash
+  <copy>
   ./discover_domain.sh
+  </copy>
   ```
 
 the output should look like:
@@ -1012,7 +1049,9 @@ appDeployments:
 - Edit the `source.yaml` file to remove the entire `domainInfo` section and the `topology` section.
 
   ```bash
+  <copy>
   nano source.yaml
+  </copy>
   ```
 
   The `domainInfo` includes basic domain infromation which we will not change.
@@ -1144,7 +1183,9 @@ appDeployments:
 ### 6.4) Edit the `source.properties` file
 
   ```bash
+  <copy>
   nano source.properties
+  </copy>
   ```
 
   It looks like:
@@ -1202,7 +1243,9 @@ The `update_domain_as_oracle_user.sh` script runs the **WebLogic Deploy Tooling*
 - Edit the `update_domain.sh` script to provide the `TARGET_WLS_ADMIN` **WebLogic Admin Server public IP**
 
   ```bash
+  <copy>
   nano update_domain.sh
+  </copy>
   ```
   Edit and then save with `CTRL+x` and `y`
 
@@ -1467,7 +1510,7 @@ https://`LOAD_BALANCER_IP`/SimpleDB/
 ## Acknowledgements
 
  - **Author** - Emmanuel Leroy, May 2020
- - **Last Updated By/Date** - Emmanuel Leroy, May 20 2020
+ - **Last Updated By/Date** - Emmanuel Leroy, June 04 2020
 
 
-***To log issues***, submit an Github [issue](https://github.com/oracle/learning-library/issues/new?title=Weblogic%20to%20OCI%20livelab&body=Issue%20with%20Weblogic%20to%20OCI%20livelab).  Please provide the name of the workshop, the link, and the step along with details of the issue.
+***To log issues***, submit an Github [issue](https://github.com/oracle/learning-library/issues/new?title=Weblogic%20to%20OCI%20livelab&body=Issue%20with%20Weblogic%20to%20OCI%20livelab%0A@streamnsight%0A).  Please provide the name of the workshop, the link, and the step along with details of the issue.

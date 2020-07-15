@@ -3,7 +3,24 @@
 
 ## Introduction
 
-This Lab will show case how to query graph using PGQL
+The [pgql-lang.org](pgql-lang.org) site and specification [pgql-land.org/spec/1.2](pgql-land.org/spec/1.2) are the best reference for details and examples. For the purposes of this lab, however, here are minimal basics. 
+
+The general structure of a PGQL query is
+
+SELECT (select list) FROM (graph name) MATCH (graph pattern) WHERE (condition)
+
+
+PGQL provides a specific construct known as the MATCH clause for matching graph patterns. A graph pattern matches vertices and edges that satisfy the given conditions and constraints. 
+() indicates a vertex variable
+
+  -an undirected edge, as in (source)-(dest)
+
+-> an outgoing edge from source to destination
+
+<- an incoming edge from destination to source
+
+[]  indicates an edge variable
+
 
 ## Before You Begin
 
@@ -12,18 +29,13 @@ This lab assumes you have completed the following labs:
 - Lab 2:  Generate SSH Key
 - Lab 3:  Create Compute instance 
 - Lab 4:  Environment setup
-- Note :  Below steps are pre-configured in the image.
-- The Oracle Graph Server and Graph Client must be installed.
-- Max string size parameter should be set to extended.
-- AL16UTF16 (instead of UTF8) must be specified as the NLS NCHAR CHARACTERSET.
-- AL32UTF8 (UTF8) should be the default character set, but AL16UTF16 must be the NLS NCHAR CHARACTERSET.
-  
+
 
 ## Step 1: Querying graph using PGQL
 
 Below are some of the examples where we can query against the graph we created using PGQL:
 
-Find the edge labels. We used labels here to tag an edge with a relationship type
+1. Find the edge labels. We used labels here to tag an edge with a relationship type
 
 ````
 <copy>
@@ -33,7 +45,7 @@ query.accept("select distinct label(e) from oe_sample_graph match ()-[e]->(m)");
 
 ![](./images/g3.png " ") 
 
-## Step 2: Finding vertex label using PGQL
+2. Finding vertex label using PGQL
 Find the vertex labels. We used labels here to tag a vertex as an entity type.
 ````
 <copy>
@@ -42,8 +54,7 @@ query.accept("select distinct label(v) from oe_sample_graph match (v)") ;
 ````
 ![](./images/g4.png " ") 
 
-
-## Step 3: Identifying the customers using PGQL
+## Step-2: Examples about customers and their orders using PGQL
 Lets look at some of the examples about customers and their orders. 
 
 **Scenario 1 : Getting count from customer table**

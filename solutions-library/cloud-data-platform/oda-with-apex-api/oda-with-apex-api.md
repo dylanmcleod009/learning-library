@@ -90,7 +90,7 @@ In this lab, you will learn how to navigate to an Oracle Digital Assistant insta
 
     ![](./images/10.png " ")
 
-3. Before Importing the skill in the next step, please make sure you **download** this file via this text link: [Download ODA Skill .zip here](./files/DemoDigitalAssistantSkill.zip)
+3. Before Importing the skill in the next step, please make sure you **download** this file via this text link: [Download ODA Skill .zip here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/MYxOb3NlvZ7F0HQ3AsMrTuXRUoD954Fvq8eZBhPndzw/n/c4u03/b/solutions-library/o/DemoDigitalAssistantSkill.zip)
 
 4. On the skill, click on the **Import Skill** button in the top right corner.
 

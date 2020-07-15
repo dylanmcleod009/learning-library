@@ -18,7 +18,7 @@ As a database admin or user,
 
 
 ## Required Artifacts
-- An Oracle Cloud Infrastructure account with privileges to create object storage buckets and dedicated autonomous databases.
+- An Oracle Cloud Infrastructure account with privileges to create object storage buckets and Exadata cloud service databases.
 - Access to a pre-provisioned Exadata cloud service database. Refer to [Lab 3](?lab=lab-3-provision-databases-on-exadata-cloud)
 - A pre-provisioned instance of Oracle Developer Client image in an application subnet. Refer to [Lab 4](?lab=lab-4-configure-development-system-for-use)
 - Access to an exadata instance to copy the dump file into

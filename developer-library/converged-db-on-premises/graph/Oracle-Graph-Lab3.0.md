@@ -5,7 +5,7 @@
 
 This lab will use the Graph Visualization component to run some PGQL queries and visualize the results as a graph instead of a tabular result.
 
-GraphViz should be accessible at host:7007/ui
+GraphViz should be accessible at http://<\instance\_ip\_address>:7007/ui
 
 The principal points of entry for the GraphViz application are the query editor and the graph lists.
 When you start GraphViz, the graph list will be populated with the graphs loaded in the graph server. To run queries against a graph, select that graph. The query lets you write PGQL queries that can be visualized. (PGQL is the SQL-like query language supported by GraphViz.)
@@ -18,11 +18,6 @@ This lab assumes you have completed the following labs:
 - Lab 2:  Generate SSH Key
 - Lab 3:  Create Compute instance 
 - Lab 4:  Environment setup
-- Note :  Below steps are pre-configured in the image.
-- The Oracle Graph Server and Graph Client must be installed.
-- Max string size parameter should be set to extended.
-- AL16UTF16 (instead of UTF8) must be specified as the NLS NCHAR CHARACTERSET.
-- AL32UTF8 (UTF8) should be the default character set, but AL16UTF16 must be the NLS NCHAR CHARACTERSET.
   
 ## Step 1: Visualize the Graph
 

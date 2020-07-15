@@ -61,7 +61,7 @@ This lab walks you through the steps to enabling Oracle Restful Data Services (O
 
     ![](./images/8.png " ")
 
-2. You will download a data file from this workshop for your APIs. You can download it by clicking on the following text link: [Download ORDS-REST-DEMO.sql here](./files/ORDS-REST-DEMO.sql). Then, return back to your browser window.
+2. You will download a data file from this workshop for your APIs. You can download it by clicking on the following text link: [Download ORDS-REST-DEMO.sql here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/kKVRLnqKZkJCLhySyrSngqQ_5riJ8pGGmbepcgy0c8w/n/c4u03/b/solutions-library/o/ORDS-REST-DEMO.sql). Then, return back to your browser window.
 
 3. Click on **Choose File** and select **ORDS-REST-DEMO.sql**, the file you just downloaded for this workshop.
 
@@ -145,7 +145,7 @@ This lab walks you through the steps to enabling Oracle Restful Data Services (O
 
 ### **STEP 2**: Add API URLs to Web Page Code
 
-1. You will download a data file from this workshop for your web page. You can download it by clicking on the following text link: [Download WebPage.zip here](./files/WebPage.zip).
+1. You will download a data file from this workshop for your web page. You can download it by clicking on the following text link: [Download WebPage.zip here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/SM0gd1zQgGI-O7fL3k3fUTP2zjsH7L6AEjc0WS_ckDk/n/c4u03/b/solutions-library/o/WebPage.zip).
 
 2. Then, go to your Downloads folder and unzip the .zip file.
 

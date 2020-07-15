@@ -20,6 +20,10 @@ Mr. Vallabh Patel & Mr. Gary Fairfield had themselves proposed to be a reference
 
 These use cases are now accessible and  will be part of our Converged DB Workshop.
 
+
+
+![](./images/env_setup_nodejs.PNG " ") 
+
 ![](./images/arc.png " ") 
 
 ## Acknowledgements
